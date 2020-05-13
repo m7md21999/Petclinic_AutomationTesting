@@ -40,7 +40,7 @@ public class EditVisitSteps {
 
     @Then("The updated visit will be displayed in the owner's page list")
     public void theUpdatedVisitWillBeDisplayedInTheOwnerSPageList() {
-        assertEquals("description has been updated here!",ownerInformationPage.visitUpdatedSuccessfully());
+        assertEquals("This will be deleted after update",ownerInformationPage.visitUpdatedSuccessfully());
         ownerInformationPage.closeBrowser();
     }
 

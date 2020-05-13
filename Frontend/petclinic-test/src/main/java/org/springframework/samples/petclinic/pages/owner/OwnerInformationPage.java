@@ -79,7 +79,8 @@ public class OwnerInformationPage extends Page {
     }
 
     public String visitUpdatedSuccessfully(){
-        return getText("/html/body/app-root/app-owner-detail/div/div/table[2]/tr/app-pet-list[2]/table/tr/td[2]/app-visit-list/table/tr[1]/td[2]");
+        implicitlyWait(10);
+        return getText("/html/body/app-root/app-owner-detail/div/div/table[2]/tr/app-pet-list[1]/table/tr/td[2]/app-visit-list/table/tr[1]/td[2]");
     }
 
     public boolean checkDeleted(){
