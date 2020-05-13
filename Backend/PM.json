@@ -184,7 +184,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"date\":\"2020/05/12\",\"description\":\"Dog visit\",\"id\":null,\"pet\":{\"id\":11,\"name\":\"Freddy\",\"birthDate\":\"2000/03/09\",\"type\":{\"id\":5,\"name\":\"bird\"},\"owner\":{\"id\":9,\"firstName\":\"David\",\"lastName\":\"Schroeder\",\"address\":\"2749 Blackhawk Trail\",\"city\":\"Madison\",\"telephone\":\"6085559435\"},\"visits\":[]}}"
+							"raw": "{\n    \"date\": \"2020/05/12\",\n    \"description\": \"Dog visit\",\n    \"id\": null,\n    \"pet\": {\n        \"id\": 11,\n        \"name\": \"Freddy\",\n        \"birthDate\": \"2000/03/09\",\n        \"type\": {\n            \"id\": 5,\n            \"name\": \"bird\"\n        },\n        \"owner\": {\n            \"id\": 9,\n            \"firstName\": \"David\",\n            \"lastName\": \"Schroeder\",\n            \"address\": \"2749 Blackhawk Trail\",\n            \"city\": \"Madison\",\n            \"telephone\": \"6085559435\"\n        },\n        \"visits\": []\n    }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/visits",
@@ -524,11 +524,12 @@
 									"pm.test(\"invalid date, fail to add visit\", function () {",
 									"    pm.response.to.have.status(400); // malformed request syntax",
 									"});",
-									"",
-									"if(pm.response.to.have.status(201)){",
+									"if (pm.response.json()) {",
 									"    postman.setEnvironmentVariable(\"totalVisits\", parseInt(environment.totalVisits) + 1);",
 									"    postman.setEnvironmentVariable(\"lastVisitAddedId\", pm.response.json().id);",
-									"}"
+									"}",
+									"",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -547,7 +548,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"date\":\"0099/343/23\",\"description\":\"Test\",\"id\":null,\"pet\":{\"id\":11,\"name\":\"Freddy\",\"birthDate\":\"2000/03/09\",\"type\":{\"id\":5,\"name\":\"bird\"},\"owner\":{\"id\":9,\"firstName\":\"David\",\"lastName\":\"Schroeder\",\"address\":\"2749 Blackhawk Trail\",\"city\":\"Madison\",\"telephone\":\"6085559435\"},\"visits\":[]}}"
+							"raw": "{\n    \"date\": \"0099/343/23\",\n    \"description\": \"Test\",\n    \"id\": null,\n    \"pet\": {\n        \"id\": 11,\n        \"name\": \"Freddy\",\n        \"birthDate\": \"2000/03/09\",\n        \"type\": {\n            \"id\": 5,\n            \"name\": \"bird\"\n        },\n        \"owner\": {\n            \"id\": 9,\n            \"firstName\": \"David\",\n            \"lastName\": \"Schroeder\",\n            \"address\": \"2749 Blackhawk Trail\",\n            \"city\": \"Madison\",\n            \"telephone\": \"6085559435\"\n        },\n        \"visits\": []\n    }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/visits",
@@ -2656,6 +2657,7 @@
 									"    pm.response.to.have.status(400); // malformed request syntax",
 									"});",
 									"",
+									"",
 									""
 								],
 								"type": "text/javascript"
@@ -2834,9 +2836,12 @@
 								"id": "f4a9c4fe-d827-4e38-b7a1-337a83f6f31c",
 								"exec": [
 									"pm.test(\"Add a New Vet as SQL Injection, Expect Error 400\", function () {",
-									"    pm.response.to.have.status(400); // malformed request syntax",
+									"    pm.response.to.have.status(400);",
 									"});",
-									"",
+									"if (pm.response.json()) {",
+									"    postman.setEnvironmentVariable(\"totalVets\", parseInt(environment.totalVets) + 1);",
+									"    postman.setEnvironmentVariable(\"latestAddedVetId\", pm.response.json().id);",
+									"}",
 									""
 								],
 								"type": "text/javascript"
@@ -3017,7 +3022,10 @@
 									"pm.test(\"Add a New Vet as Numbers , Expect Error 400\", function () {",
 									"    pm.response.to.have.status(400); // malformed request syntax",
 									"});",
-									"",
+									"if (pm.response.json()) {",
+									"    postman.setEnvironmentVariable(\"totalVets\", parseInt(environment.totalVets) + 1);",
+									"    postman.setEnvironmentVariable(\"latestAddedVetId\", pm.response.json().id);",
+									"}",
 									""
 								],
 								"type": "text/javascript"
@@ -3198,6 +3206,10 @@
 									"pm.test(\"Add a New Vet as Symbols , Expect Error 400\", function () {",
 									"    pm.response.to.have.status(400); // malformed request syntax",
 									"});",
+									"if (pm.response.json()) {",
+									"    postman.setEnvironmentVariable(\"totalVets\", parseInt(environment.totalVets) + 1);",
+									"    postman.setEnvironmentVariable(\"latestAddedVetId\", pm.response.json().id);",
+									"}",
 									"",
 									""
 								],
@@ -3379,6 +3391,10 @@
 									"pm.test(\"Add a New Vet as Spaces , Expect Error 400\", function () {",
 									"    pm.response.to.have.status(400); // malformed request syntax",
 									"});",
+									"if (pm.response.json()) {",
+									"    postman.setEnvironmentVariable(\"totalVets\", parseInt(environment.totalVets) + 1);",
+									"    postman.setEnvironmentVariable(\"latestAddedVetId\", pm.response.json().id);",
+									"}",
 									"",
 									""
 								],
@@ -3560,7 +3576,10 @@
 									"pm.test(\"Add a New Vet with made up specialities , Expect Error 400\", function () {",
 									"    pm.response.to.have.status(400); // malformed request syntax",
 									"});",
-									"",
+									"if (pm.response.json()) {",
+									"    postman.setEnvironmentVariable(\"totalVets\", parseInt(environment.totalVets) + 1);",
+									"    postman.setEnvironmentVariable(\"latestAddedVetId\", pm.response.json().id);",
+									"}",
 									""
 								],
 								"type": "text/javascript"
@@ -5977,7 +5996,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"id\":null,\r\n   \"owner\":{\r\n      \"id\":1,\r\n      \"firstName\":\"George\",\r\n      \"lastName\":\"Franklin\",\r\n      \"address\":\"110 W. Liberty St.\",\r\n      \"city\":\"Madison\",\r\n      \"telephone\":\"6085551023\"\r\n   },\r\n   \"name\":\"AddedThroughPostman\",\r\n   \"birthDate\":\"2018/05/12\",\r\n   \"type\":{\r\n      \"id\":6,\r\n      \"name\":\"hamster\"\r\n   }\r\n}"
+							"raw": "{\r\n   \"id\":null,\r\n   \"owner\":{\r\n      \"id\":1,\r\n      \"firstName\":\"George\",\r\n      \"lastName\":\"Franklin\",\r\n      \"address\":\"110 W. Liberty St.\",\r\n      \"city\":\"Madison\",\r\n      \"telephone\":\"6085551023\"\r\n   },\r\n   \"name\":\"AddedThroughPostman\",\r\n   \"birthDate\":\"2018/05/12\",\r\n   \"type\":{\r\n      \"id\":3,\r\n      \"name\":\"lizard\"\r\n   }\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/pets",
@@ -6139,6 +6158,10 @@
 									"pm.test(\"Fail to add pet with empty name field\", function () {",
 									"    pm.response.to.have.status(400); // not created",
 									"});",
+									"if (pm.response.json()) {",
+									"    postman.setEnvironmentVariable(\"totalPets\", parseInt(environment.totalPets) + 1);",
+									"    postman.setEnvironmentVariable(\"mostRecentlyAddedPetId\", pm.response.json().id);",
+									"}",
 									"",
 									"",
 									"",
@@ -6161,7 +6184,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"id\":null,\r\n   \"owner\":{\r\n      \"id\":1,\r\n      \"firstName\":\"George\",\r\n      \"lastName\":\"Franklin\",\r\n      \"address\":\"110 W. Liberty St.\",\r\n      \"city\":\"Madison\",\r\n      \"telephone\":\"6085551023\"\r\n   },\r\n   \"name\":\"\",\r\n   \"birthDate\":\"2018/05/12\",\r\n   \"type\":{\r\n      \"id\":6,\r\n      \"name\":\"hamster\"\r\n   }\r\n}"
+							"raw": "{\r\n   \"id\":null,\r\n   \"owner\":{\r\n      \"id\":1,\r\n      \"firstName\":\"George\",\r\n      \"lastName\":\"Franklin\",\r\n      \"address\":\"110 W. Liberty St.\",\r\n      \"city\":\"Madison\",\r\n      \"telephone\":\"6085551023\"\r\n   },\r\n   \"name\":\"\",\r\n   \"birthDate\":\"2018/05/12\",\r\n   \"type\":{\r\n      \"id\":3,\r\n      \"name\":\"lizard\"\r\n   }\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/pets",
@@ -6322,14 +6345,11 @@
 								"exec": [
 									"pm.test(\"Fail to add pet with future birth date\", function () {",
 									"    pm.response.to.have.status(400); // not created",
-									"",
 									"});",
-									"",
-									"if (pm.response.to.have.status(201)) {",
+									"if (pm.response.json()) {",
 									"    postman.setEnvironmentVariable(\"totalPets\", parseInt(environment.totalPets) + 1);",
 									"    postman.setEnvironmentVariable(\"mostRecentlyAddedPetId\", pm.response.json().id);",
-									"}",
-									""
+									"}"
 								],
 								"type": "text/javascript"
 							}
@@ -6348,7 +6368,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"id\":null,\r\n   \"owner\":{\r\n      \"id\":1,\r\n      \"firstName\":\"George\",\r\n      \"lastName\":\"Franklin\",\r\n      \"address\":\"110 W. Liberty St.\",\r\n      \"city\":\"Madison\",\r\n      \"telephone\":\"6085551023\"\r\n   },\r\n   \"name\":\"AddedThroughPostman\",\r\n   \"birthDate\":\"2030/05/12\",\r\n   \"type\":{\r\n      \"id\":6,\r\n      \"name\":\"hamster\"\r\n   }\r\n}"
+							"raw": "{\r\n   \"id\":null,\r\n   \"owner\":{\r\n      \"id\":1,\r\n      \"firstName\":\"George\",\r\n      \"lastName\":\"Franklin\",\r\n      \"address\":\"110 W. Liberty St.\",\r\n      \"city\":\"Madison\",\r\n      \"telephone\":\"6085551023\"\r\n   },\r\n   \"name\":\"AddedThroughPostman\",\r\n   \"birthDate\":\"2030/05/12\",\r\n   \"type\":{\r\n      \"id\":3,\r\n      \"name\":\"lizard\"\r\n   }\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/pets",
@@ -6511,8 +6531,7 @@
 									"    pm.response.to.have.status(400); // not created",
 									"",
 									"});",
-									"",
-									"if (pm.response.to.have.status(201)) {",
+									"if (pm.response.json()) {",
 									"    postman.setEnvironmentVariable(\"totalPets\", parseInt(environment.totalPets) + 1);",
 									"    postman.setEnvironmentVariable(\"mostRecentlyAddedPetId\", pm.response.json().id);",
 									"}",
@@ -6536,7 +6555,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"id\":null,\r\n   \"owner\":{\r\n      \"id\":1,\r\n      \"firstName\":\"George\",\r\n      \"lastName\":\"Franklin\",\r\n      \"address\":\"110 W. Liberty St.\",\r\n      \"city\":\"Madison\",\r\n      \"telephone\":\"6085551023\"\r\n   },\r\n   \"name\":\"%$%544\",\r\n   \"birthDate\":\"2018/05/12\",\r\n   \"type\":{\r\n      \"id\":6,\r\n      \"name\":\"hamster\"\r\n   }\r\n}"
+							"raw": "{\r\n   \"id\":null,\r\n   \"owner\":{\r\n      \"id\":1,\r\n      \"firstName\":\"George\",\r\n      \"lastName\":\"Franklin\",\r\n      \"address\":\"110 W. Liberty St.\",\r\n      \"city\":\"Madison\",\r\n      \"telephone\":\"6085551023\"\r\n   },\r\n   \"name\":\"%$%544\",\r\n   \"birthDate\":\"2018/05/12\",\r\n   \"type\":{\r\n      \"id\":3,\r\n      \"name\":\"lizard\"\r\n   }\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/pets",
@@ -9368,8 +9387,7 @@
 								"id": "45798cd6-f1ee-4a80-b281-31aeb533f42d",
 								"exec": [
 									"pm.test(\"Fail to add PetType\", function () {",
-									"    pm.response.to.have.status(201);",
-									"",
+									"    pm.response.to.have.status(400);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -10181,7 +10199,7 @@
 								"exec": [
 									"pm.test(\"Delete most recent pettype\", function () {\r",
 									"    pm.response.to.have.status(204); // deleted\r",
-									"    postman.setEnvironmentVariable(\"totalpettype\", parseInt(environment.totalpettype) - 1);\r",
+									"    postman.setEnvironmentVariable(\"totalPetTypes\", parseInt(environment.totalPettype) - 1);\r",
 									"\r",
 									"});\r",
 									"\r",
@@ -10360,7 +10378,7 @@
 								"id": "c13419fc-a032-4ca5-bb6e-654608926421",
 								"exec": [
 									"pm.test(\"Fail to delete non-existant pet\", function () {\r",
-									"    pm.response.to.have.status(204); // Not found\r",
+									"    pm.response.to.have.status(404); // Not found\r",
 									"});\r",
 									"\r",
 									""
@@ -10387,7 +10405,7 @@
 							"variable": [
 								{
 									"key": "petTypeId",
-									"value": "{{mostRecentlyAddedPetTypeId}}",
+									"value": "314681",
 									"description": "(Required) petTypeId"
 								}
 							]
@@ -10569,11 +10587,33 @@
 			"protocolProfileBehavior": {}
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ff275093-3645-4db0-93f2-53ba0630284f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2461de65-c25e-4513-b1df-ef49e185ab68",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
-			"id": "baseUrl",
+			"id": "4c2e26c0-01a8-4bb8-a256-0b7baad9504c",
 			"key": "baseUrl",
-			"value": "//localhost:8080/petclinic/api",
+			"value": "http://localhost:8080/petclinic/api",
 			"type": "string"
 		}
 	],
