@@ -9,6 +9,7 @@ import org.springframework.samples.petclinic.pages.owner.AllOwnersPage;
 import org.springframework.samples.petclinic.pages.owner.OwnerInformationPage;
 import org.springframework.samples.petclinic.pages.pet.AddPetPage;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
@@ -21,6 +22,7 @@ public class AddPetSteps {
     private String name = "Test";
     private String birthDate = "2020/04/13";
     private int index = 2;
+    private String nameWithSymbols = "^5$%^";
 
     @Given("I am on the add-pet form")
     public void iAmOnTheAddPetForm() {
@@ -58,8 +60,7 @@ public class AddPetSteps {
 
     @And("I enter symbols and numbers rather than words in the name field")
     public void iEnterSymbolsAndNumbersRatherThanWordsInTheNameField() {
-        name = "^5$%^";
-        addPetPage.fillInForm(name, birthDate, index);
+        addPetPage.fillInForm(nameWithSymbols, birthDate, index);
     }
 
     @Then("I remain in the add pet page")
@@ -69,4 +70,9 @@ public class AddPetSteps {
     }
 
 
+    @Then("The new pet will not be added")
+    public void theNewPetWillNotBeAdded() {
+        assertFalse(ownerInformationPage.petNames().contains(nameWithSymbols));
+        ownerInformationPage.closeBrowser();
+    }
 }

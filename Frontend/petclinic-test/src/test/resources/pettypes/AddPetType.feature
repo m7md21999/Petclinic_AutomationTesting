@@ -15,7 +15,7 @@ Feature: Add PetTypes
     When  I Clinic add button
     And   I enter symbols and numbers rather than words data
     And    I submit the pet-type name
-    Then  The new Pet Type will be displayed at the end of the Pet Type's list
+    Then  The new Pet Type will not be displayed at the end of the Pet Type's list
 
   Scenario: Unsuccessfully add an Pet Type
     Given I am on the Pet Type form

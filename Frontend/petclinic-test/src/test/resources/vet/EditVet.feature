@@ -13,13 +13,13 @@ Feature: Edit an existing Vet
     Given I am navigated to the All Veterinarian page
     When  I click edit button the for the first vet
     And   I fill fields with numbers
-    Then  The edited vet should not be displayed in all vets list
+    Then  The edited numbers vet should not be displayed in all vets list
 
   Scenario: editing a Vet with two spaces as names
     Given I am navigated to the All Veterinarian page
     When  I click edit button the for the first vet
     And   I fill fields with two spaces
-    Then  The edited vet should not be displayed in all vets list
+    Then  The edited spaces vet should not be displayed in all vets list
 
 
   Scenario: edit a Vet to be blank

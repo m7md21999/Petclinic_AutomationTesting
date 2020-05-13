@@ -9,6 +9,7 @@ import org.springframework.samples.petclinic.pages.owner.AllOwnersPage;
 import org.springframework.samples.petclinic.pages.owner.OwnerInformationPage;
 import org.springframework.samples.petclinic.pages.pet.EditPetPage;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
@@ -21,6 +22,7 @@ public class EditPetSteps {
     private String name = "Updated";
     private final String birthDate = "2019/01/01";
     private final int index = 1;
+    private String nameWithSymbols = "^5$%^";
 
     @Given("I am on the edit-pet form")
     public void iAmOnTheEditPetForm() {
@@ -50,8 +52,7 @@ public class EditPetSteps {
 
     @And("I update the name field with symbols and numbers rather than words")
     public void iUpdateTheNameFieldWithSymbolsAndNumbersRatherThanWords() {
-        name = "%45$^";
-        editPetPage.fillInForm(name, birthDate, index);
+        editPetPage.fillInForm(nameWithSymbols, birthDate, index);
     }
 
     @Then("The pet information will be updated and displayed at the owner information page")
@@ -67,4 +68,9 @@ public class EditPetSteps {
     }
 
 
+    @Then("The new pet will not updated")
+    public void theNewPetWillNotUpdated() {
+        assertFalse(ownerInformationPage.petNames().contains(nameWithSymbols));
+        ownerInformationPage.closeBrowser();
+    }
 }

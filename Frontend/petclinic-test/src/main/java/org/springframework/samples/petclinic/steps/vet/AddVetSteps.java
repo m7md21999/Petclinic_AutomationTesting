@@ -27,6 +27,8 @@ public class AddVetSteps {
     private String numsym1 = "8347769245()?";
     private String numsym2 = "&%^$#$%%6357";
     private String numsymComb = numsym1 + " " + numsym2;
+    private String oneSpace = " ";
+    private String spaceCombined ="      ";
 
 
     //Scenario: Successfully add a Vet choosing type
@@ -110,12 +112,12 @@ public class AddVetSteps {
     // Scenario: add a Vet with one space in each field
     @When("I enter a single space in both fields")
     public void iEnterASingleSpaceInBothFields() {
-        addVet.fillData(" "," ");
+        addVet.fillData(oneSpace,oneSpace);
     }
     @Then("the new empty vet should not be submitted")
     public void theNewEmptyVetShouldNotBeSubmitted() {
         allVets = addVet.saveAndRedirect();
-        assertFalse(allVets.isCurrent());
+        assertTrue(allVets.exists(oneSpace+" "+oneSpace));
         allVets.closeBrowser();
     }
 
@@ -130,7 +132,6 @@ public class AddVetSteps {
     @Then("the new sql vet should not be submitted")
     public void theNewSqlVetShouldNotBeSubmitted() {
         allVets = addVet.saveAndRedirect();
-        assertFalse(allVets.isCurrent());
-
+        assertFalse(allVets.exists("SELECT * From veterinarian;"));
     }
 }

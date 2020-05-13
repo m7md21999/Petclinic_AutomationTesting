@@ -18,21 +18,10 @@ Feature: Add Vet
     When  I click Save Vet Button
     Then  page is not redirected
 
-  Scenario: add a Vet with one space in each field
-    Given I am on the New Veterinarian form
-    When  I enter a single space in both fields
-    Then  the new empty vet should not be submitted
-
   Scenario: Short data Error Message
     Given I am on the New Veterinarian form
     When  I enter a single character in both fields
     Then  I see error message specifying at least two chars long
-
-  Scenario: SQL Injection Should not be submitted
-    Given I am on the New Veterinarian form
-    When I enter a select phrase in both fields
-    Then  the new sql vet should not be submitted
-
 
 
   Scenario: Submit Short data
@@ -45,3 +34,12 @@ Feature: Add Vet
     When   I enter symbols and numbers rather in fields
     Then  The new numeric vet should not be submitted
 
+  Scenario: add a Vet with one space in each field
+    Given I am on the New Veterinarian form
+    When  I enter a single space in both fields
+    Then  the new empty vet should not be submitted
+
+  Scenario: SQL Injection Should not be submitted
+    Given I am on the New Veterinarian form
+    When I enter a select phrase in both fields
+    Then  the new sql vet should not be submitted
