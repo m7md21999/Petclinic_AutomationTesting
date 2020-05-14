@@ -56,14 +56,14 @@ A very simple Full-Stack Web Application for managing a pet clinc. It demonestra
 ---
 
 ## Test Summary Screenshots
-[UI Testing](./Screenshots/IntelliJ.png)
-[API Testing](./Screenshots/PostMan.png)
+![UI Testing](./Screenshots/IntelliJ.png)
+![API Testing](./Screenshots/PostMan.png)
 
 ---
 
 ## Test Summary Diagrams
-[UI Testing](./Screenshots/UID.png)
-[UI Testing](./Screenshots/APID.png)
+![UI Testing](./Screenshots/UID.png)
+![UI Testing](./Screenshots/APID.png)
 
 
 
