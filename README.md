@@ -62,8 +62,7 @@ A very simple Full-Stack Web Application for managing a pet clinc. It demonestra
 ---
 
 ## Test Summary Diagrams
-<img src="./Screenshots/UID.png" height="500px" width="500px">
-<img src="./Screenshots/APID.png" height="500px" width="500px">
+<img src="./Screenshots/UID.png" height="380px" width="380px"> <img src="./Screenshots/APID.png" height="380px" width="380px">
 
 
 ---
