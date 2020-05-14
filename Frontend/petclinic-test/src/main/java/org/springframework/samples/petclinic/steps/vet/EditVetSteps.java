@@ -16,7 +16,7 @@ public class EditVetSteps {
     private EditVetPage editVet;
     private String fname = "Edited Foo";
     private String lname = "Edited Bar";
-    private String validEdited = fname+" "+lname;
+    private String validEdited = fname + " " + lname;
 
     //   Scenario: Successfully editing a Vet without changing type
     @Given("I am navigated to the All Veterinarian page")
@@ -24,6 +24,7 @@ public class EditVetSteps {
         allVets = homePage.goToVetsList();
         assertTrue(allVets.isCurrent());
     }
+
     @When("I click edit button the for the first vet")
     public void iClickEditButtonTheForTheFirstVet() {
         editVet = allVets.editFirst();
@@ -31,9 +32,10 @@ public class EditVetSteps {
 
     @And("I enter valid data")
     public void iEnterValidData() {
-        editVet.fillData(fname,lname);
+        editVet.fillData(fname, lname);
         allVets = editVet.saveAndRedirect();
     }
+
     @Then("The edited vet will be displayed at the end of the vets's list")
     public void theEditedVetWillBeDisplayedAtTheEndOfTheVetsSList() {
         assertTrue(allVets.exists(validEdited));
@@ -43,12 +45,14 @@ public class EditVetSteps {
     //   Scenario: Unsuccessfully edit a Vet to be blank
     @And("I clear all data")
     public void iClearAllData() {
-        editVet.fillData(" "," ");
+        editVet.fillData(" ", " ");
     }
+
     @But("two errors show up")
     public void twoErrorsShowUp() {
         editVet.isFieldsBlankErrorShowing();
     }
+
     @Then("save button is disabled")
     public void saveButtonIsDisabled() {
         assertFalse(editVet.saveButtonDisabled());
@@ -59,15 +63,30 @@ public class EditVetSteps {
     //   Scenario: Successfully editing a Vet with two spaces as names
     @And("I fill fields with two spaces")
     public void iFillFieldsWithTwoSpaces() {
-        editVet.fillData("  ","  ");
+        editVet.fillData("  ", "  ");
         allVets = editVet.saveAndRedirect();
     }
-    // Scenario: Successfully editing a Vet to have numbers as names
+
+    @Then("The edited spaces vet should not be displayed in all vets list")
+    public void theEditedSpacesVetShouldNotBeDisplayedInAllVetsList() {
+        assertTrue(allVets.exists("  "+" "+"  "));
+        allVets.closeBrowser();
+
+    }
+
+
+    // Scenario: editing a Vet to have numbers as names
     @And("I fill fields with numbers")
     public void iFillFieldsWithNumbers() {
-        editVet.fillData("2131234254","123412542");
+        editVet.fillData("123", "123");
         allVets = editVet.saveAndRedirect();
 
+    }
+
+    @Then("The edited numbers vet should not be displayed in all vets list")
+    public void theEditedNumbersVetShouldNotBeDisplayedInAllVetsList() {
+        assertFalse(allVets.exists("123 123"));
+        allVets.closeBrowser();
     }
 
     //   Scenario: Successfully click back button from edit form
@@ -81,5 +100,7 @@ public class EditVetSteps {
         assertTrue(allVets.isCurrent());
         allVets.closeBrowser();
     }
+
+
 }
 

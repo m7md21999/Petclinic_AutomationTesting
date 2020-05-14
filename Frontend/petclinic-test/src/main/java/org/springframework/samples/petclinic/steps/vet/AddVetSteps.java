@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.steps.vet;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -8,6 +9,8 @@ import org.springframework.samples.petclinic.pages.vet.AddVetPage;
 import org.springframework.samples.petclinic.pages.vet.AllVetsPage;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+
 
 
 public class AddVetSteps {
@@ -24,6 +27,8 @@ public class AddVetSteps {
     private String numsym1 = "8347769245()?";
     private String numsym2 = "&%^$#$%%6357";
     private String numsymComb = numsym1 + " " + numsym2;
+    private String oneSpace = " ";
+    private String spaceCombined ="      ";
 
 
     //Scenario: Successfully add a Vet choosing type
@@ -83,23 +88,50 @@ public class AddVetSteps {
     public void iEnterOneCharacterInBothFields() {
         addVet.fillData(char1,char2);
     }
-
-    @Then("The new short vet will be displayed at the end of the vets's list")
-    public void theNewShortVetWillBeDisplayedAtTheEndOfTheVetsSList() {
+    @Then("The new short vet should not be submitted")
+    public void theNewShortVetShouldNotBeSubmitted() {
         allVets = addVet.saveAndRedirect();
-        assertTrue(allVets.exists(shortComb));
+        assertFalse(allVets.exists(shortComb));
         allVets.closeBrowser();
     }
+
 
     //   Scenario: Create Vet with symbols and numbers in fields
     @When("I enter symbols and numbers rather in fields")
     public void iEnterSymbolsAndNumbersRatherInFields() {
         addVet.fillData(numsym1,numsym2);
     }
-    @Then("The new numeric vet will be displayed at the end of the vets's list")
-    public void theNewNumericVetWillBeDisplayedAtTheEndOfTheVetsSList() {
+    @Then("The new numeric vet should not be submitted")
+    public void theNewNumericVetShouldNotBeSubmitted() {
         allVets = addVet.saveAndRedirect();
-        assertTrue(allVets.exists(numsymComb));
+        assertFalse(allVets.exists(numsymComb));
         allVets.closeBrowser();
+
+    }
+
+    // Scenario: add a Vet with one space in each field
+    @When("I enter a single space in both fields")
+    public void iEnterASingleSpaceInBothFields() {
+        addVet.fillData(oneSpace,oneSpace);
+    }
+    @Then("the new empty vet should not be submitted")
+    public void theNewEmptyVetShouldNotBeSubmitted() {
+        allVets = addVet.saveAndRedirect();
+        assertTrue(allVets.exists(oneSpace+" "+oneSpace));
+        allVets.closeBrowser();
+    }
+
+
+
+    // Scenario: SQL Injection Error Message
+    @When("I enter a select phrase in both fields")
+    public void iEnterASelectPhraseInBothFields() {
+        addVet.fillData("SELECT *","From veterinarian;");
+    }
+
+    @Then("the new sql vet should not be submitted")
+    public void theNewSqlVetShouldNotBeSubmitted() {
+        allVets = addVet.saveAndRedirect();
+        assertFalse(allVets.exists("SELECT * From veterinarian;"));
     }
 }

@@ -1,0 +1,79 @@
+{
+  "_": {
+    "postman_variable_scope": "environment",
+    "postman_exported_at": "2020-05-13T21:55:34.298Z",
+    "postman_exported_using": "Postman/7.24.0"
+  },
+  "id": "815a13ee-86ca-4392-8f7b-8db3296e37db",
+  "name": "petclinic",
+  "values": [
+    {
+      "type": "any",
+      "value": "4",
+      "key": "totalVisits"
+    },
+    {
+      "type": "any",
+      "value": "108",
+      "key": "lastVisitAddedId"
+    },
+    {
+      "type": "any",
+      "value": "13",
+      "key": "totalOwners"
+    },
+    {
+      "type": "any",
+      "value": "103",
+      "key": "mostRecentlyAddedId"
+    },
+    {
+      "type": "any",
+      "value": "31",
+      "key": "totalVets"
+    },
+    {
+      "type": "any",
+      "value": "128",
+      "key": "latestAddedVetId"
+    },
+    {
+      "type": "any",
+      "value": "16",
+      "key": "totalPets"
+    },
+    {
+      "type": "any",
+      "value": "112",
+      "key": "mostRecentlyAddedPetId"
+    },
+    {
+      "type": "any",
+      "value": "7",
+      "key": "totalSpecialties"
+    },
+    {
+      "type": "any",
+      "value": "106",
+      "key": "specialtyId"
+    },
+    {
+      "type": "any",
+      "value": "112##",
+      "key": "specialtyName"
+    },
+    {
+      "type": "any",
+      "value": "8",
+      "key": "totalPetTypes"
+    },
+    {
+      "type": "any",
+      "value": "2",
+      "key": "mostRecentlyAddedPetTypeId"
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2020-05-13T21:56:08.237Z",
+  "_postman_exported_using": "Newman/5.0.0"
+}

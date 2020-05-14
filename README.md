@@ -1,6 +1,8 @@
 # Petclinic Automation Testing project
 
-A very simple Full-Stack Web Application that was built for the purposes of testing the crud operations.
+## Description
+
+A very simple Full-Stack Web Application for managing a pet clinc. It demonestrates the full crud (Create , Read , Update , Delete) operations. The user can perform those operations either by using the UI (Angular based) or the API (SpringBoot based).
 
 ---
 
@@ -14,10 +16,6 @@ A very simple Full-Stack Web Application that was built for the purposes of test
 
 ---
 
-## Description
-
-Petclinic is a web application that let customers book appointments with vets.Also admins can interact with the data saved in the database **Postgress** either by **viewing**, **adding** , **deleteing** or **updating** the information of any employee.
-
 ## Technologies Used
 
 ```diff
@@ -28,7 +26,6 @@ Petclinic is a web application that let customers book appointments with vets.Al
 - Git
 - Selenium
 - Cucumber
-- Jenkins
 - Docker
 
 ```
@@ -38,15 +35,18 @@ Petclinic is a web application that let customers book appointments with vets.Al
 ```diff
 + IntelliJ Idea
 + GitBash
++ Postman
 ```
 
 ---
 
-## Planning and Development Process
-
-- We Started deviding tasks between the team members.
-- Each team member started working on his individual task.
+## Planning and Testing Process
+- After we had a discussion , we chose black box techniques (error guessing and exploratory) as our testing method to get an idea on the application before writing our test cases, since we didn't have any access to the code.
+- Using the BDD (Behavioural Driven Design) , we moved onto writing the feature files and scenarios.
+- Then started deviding features between the team members.
+- Each team member started working on his individual feature.
 - We shared and helped each other.
+- We concluded with writing the test summary report.
 
 ## Problem-Solving Strategy
 
@@ -55,11 +55,30 @@ Petclinic is a web application that let customers book appointments with vets.Al
 
 ---
 
-## Sample Pictures
+## Test Summary Screenshots
+![UI Testing](./Screenshots/IntelliJ.png)
+![API Testing](./Screenshots/PostMan.png)
 
 ---
+
+## Test Summary Diagrams
+<img src="./Screenshots/UID.png" height="380px" width="380px"> <img src="./Screenshots/APID.png" height="380px" width="380px">
+
+
+---
+
+## References 
+
+All Docker Images that we used to test the web application , can be found in this link.
+
+[Pet Clinic Docker Images](https://github.com/BryanDollery/petclinic)
+
+
+--- 
+
 
 ## Acknowledgments
 
 - Saudi Information Technology Company (**SITE**)
+- Our Awsome Instructor : [Bryan Dollery](https://github.com/BryanDollery)
 - KnowledgeHut

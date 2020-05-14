@@ -16,13 +16,13 @@ Feature: Add Owner
 ##
   Scenario: Unsuccessfully add an owner
     Given I am on the add-owner form
-    When  I enter owner invalid data
+    When  I enter owner invalid short data
     Then  The add owner submit button is disabled
 #
-  Scenario: Short data
+  Scenario: Short data to add an owner
     Given I am on the add-owner form
-    When  I enter owner invalid data
-    Then  I see a specific message for each field specifying that the field must be at least chars long
+    When  I enter owner invalid short data
+    Then  I see a specific message for each field specifying that "First name must be at least 2 characters long"
 
 #  Scenario: Remove values from all the fields
 #    Given I am on the add-owner form
@@ -35,17 +35,17 @@ Feature: Add Owner
     Given I am on the add-owner form
     And   I enter a non-numeric value into the phone field
     Then  The add owner submit button is disabled
-    And   I see an error message specifying that the phone number only accepts digits
+    And   I see an error message specifying that "Phone number only accept digits"
 
 
-  Scenario: Create owner with symbols and numbers in key fields
+  Scenario: Unsuccessfully Create owner with symbols and numbers in key fields
     Given I am on the add-owner form
     And   I enter symbols and numbers rather than words
     When  I submit the add owner form
-    Then  The new owner "1223##$" will be displayed at the end of the owner's list
+    Then  I see a specific message for each field specifying that "First name must not contain symbols and numbers"
 
-#  Scenario: Duplicate an owner
-#    Given I am on the add-owner form
-#    And   I enter duplicate owner's details
-#    When  I submit the form
-#    Then  The new owner will be displayed at the end of the owner's list
+  Scenario: Duplicate an owner
+    Given I am on the add-owner form
+    And   I enter duplicate owner's details
+    When  I submit the add owner form
+    Then  I see an error message specifying that "Owner exists already!"

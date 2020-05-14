@@ -27,4 +27,4 @@ Feature: Add Pet
     Given I am on the add-pet form
     And   I enter symbols and numbers rather than words in the name field
     When  I submit the add-pet form
-    Then  The new pet will be displayed at the owner information page
+    Then  The new pet will not be added

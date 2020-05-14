@@ -57,7 +57,7 @@ public class AddOwnerSteps {
     @When("I submit the add owner form")
     public void iSubmitTheForm() {
         allOwnersPage = addOwnerPage.submit();
-  }
+    }
 
     @Then("The new owner will be displayed at the end of the owner's list")
     public void theNewOwnerWillBeDisplayedAtTheEndOfTheOwnerSList() {
@@ -66,8 +66,9 @@ public class AddOwnerSteps {
 
     }
 
-    @When("I enter owner invalid data")
+    @When("I enter owner invalid short data")
     public void iEnterInvalidData() {
+
         addOwnerPage.enterInvalidData();
     }
 
@@ -78,23 +79,23 @@ public class AddOwnerSteps {
 
     }
 
-    @Then("I see a specific message for each field specifying that the field must be at least chars long")
-    public void iSeeASpecificMessageForEachFieldSpecifyingThatTheFieldMustBeAtLeastCharsLong() {
-        assertTrue(addOwnerPage.checkErrorMsg(shortInputErrorMsg));
-        addOwnerPage.closeBrowser();
-    }
+//    @Then("I see a specific message for each field specifying that the field must be at least chars long")
+//    public void iSeeASpecificMessageForEachFieldSpecifyingThatTheFieldMustBeAtLeastCharsLong() {
+//        assertTrue(addOwnerPage.checkErrorMsg(shortInputErrorMsg));
+//        addOwnerPage.closeBrowser();
+//    }
 
     @And("I enter a non-numeric value into the phone field")
     public void iEnterANonNumericValueIntoThePhoneField() {
         addOwnerPage.enterInvalidData();
 
     }
-
-    @And("I see an error message specifying that the phone number only accepts digits")
-    public void iSeeAnErrorMessageSpecifyingThatThePhoneNumberOnlyAcceptsDigits() {
-        assertTrue(addOwnerPage.checkErrorMsg(numericInputErrorMsg));
-        addOwnerPage.closeBrowser();
-    }
+//
+//    @And("I see an error message specifying that the phone number only accepts digits")
+//    public void iSeeAnErrorMessageSpecifyingThatThePhoneNumberOnlyAcceptsDigits() {
+//        assertTrue(addOwnerPage.checkErrorMsg(numericInputErrorMsg));
+//        addOwnerPage.closeBrowser();
+//    }
 
     @And("I enter duplicate owner's details")
     public void iEnterDuplicateOwnerSDetails() {
@@ -113,4 +114,16 @@ public class AddOwnerSteps {
         allOwnersPage.closeBrowser();
     }
 
+    @Then("I see a specific message for each field specifying that {string}")
+    public void iSeeASpecificMessageForEachFieldSpecifyingThat(String arg0) {
+
+        assertTrue(addOwnerPage.checkErrorMsg(shortInputErrorMsg));
+        addOwnerPage.closeBrowser();
+    }
+
+    @And("I see an error message specifying that {string}")
+    public void iSeeAnErrorMessageSpecifyingThat(String arg0) {
+        assertTrue(addOwnerPage.checkErrorMsg(numericInputErrorMsg));
+        addOwnerPage.closeBrowser();
+    }
 }

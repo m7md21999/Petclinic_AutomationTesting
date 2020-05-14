@@ -72,4 +72,8 @@ public class EditOwnerSteps {
         assertTrue(editOwnerPage.checkButtonDisability());
         editOwnerPage.closeBrowser();
     }
+    @And("I Edit key fields with symbols and numbers rather than words")
+    public void iEditKeyFieldsWithSymbolsAndNumbersRatherThanWords() {
+        editOwnerPage.enterSymbolsAndNumbers();
+    }
 }

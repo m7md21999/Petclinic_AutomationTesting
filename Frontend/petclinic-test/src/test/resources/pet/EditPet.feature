@@ -14,7 +14,7 @@ Feature: Edit Pet
     Given I am on the edit-pet form
     And   I update the name field with symbols and numbers rather than words
     When  I submit the edit-pet form
-    Then  The pet information will be updated and displayed at the owner information page
+    Then  The new pet will not updated
 
   Scenario: Birth data must be in a date format
     Given I am on the edit-pet form
